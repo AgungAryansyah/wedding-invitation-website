@@ -1,1 +1,1 @@
-# wedding-invintation-website
+# wedding-invitation-website
