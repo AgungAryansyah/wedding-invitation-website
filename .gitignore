@@ -28,7 +28,7 @@ go.work.sum
 .vscode/*
 
 #postgres
-/postgres_data
+./backend/postgres_data
 
 # Logs
 logs
