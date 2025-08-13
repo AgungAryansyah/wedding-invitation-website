@@ -9,29 +9,29 @@ services:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASS}
     volumes:
-      - backend/postgres_data:/var/lib/postgresql/data
+      - ./backend/postgres_data:/var/lib/postgresql/data
     networks:
       - wi-network
 
-  # wi-be:
-  #   container_name: "wi-be"
-  #   build:
-  #     context: .
-  #   env_file:
-  #     - /backend/.env
-  #   environment:
-  #     - DB_HOST=${DB_HOST}
-  #     - DB_PORT=${DB_PORT}
-  #     - DB_NAME=${DB_NAME}
-  #     - DB_USER=${DB_USER}
-  #     - DB_PASS=${DB_PASS}
-  #   ports:
-  #     - "${APP_PORT}:${APP_PORT}"
-  #   networks:
-  #     - wi-network
-  #   depends_on:
-  #     - wi-postgres
-  #   restart: on-failure
+  wi-be:
+    container_name: "wi-be"
+    build:
+      context: ./backend
+    env_file:
+      - .env
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
+    ports:
+      - "${APP_PORT}:${APP_PORT}"
+    networks:
+      - wi-network
+    depends_on:
+      - wi-postgres
+    restart: on-failure
     
 networks:
   wi-network:
