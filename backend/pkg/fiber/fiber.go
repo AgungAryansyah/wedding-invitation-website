@@ -1,12 +1,18 @@
 package fiber
 
 import (
+	"wedding-invitation-website/pkg/response"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 
 func Start() *fiber.App {
-	app := fiber.New()
+	app := fiber.New(
+		fiber.Config{
+			ErrorHandler: response.CustomErrorHandler,
+		},
+	)
 
 	app.Use(cors.New(cors.Config{
 		AllowOrigins:     "http://localhost:5173", //should be updated for prod
