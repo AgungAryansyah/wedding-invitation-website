@@ -16,7 +16,8 @@ services:
   wi-be:
     container_name: "wi-be"
     build:
-      context: ./backend
+      context: .
+      dockerfile: backend/Dockerfile
     env_file:
       - .env
     environment:
