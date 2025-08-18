@@ -13,8 +13,8 @@ import (
 )
 
 type IJWT interface {
-	GenerateToken(id uuid.UUID, roleId int) (string, error)
-	ValidateToken(token string) (uuid.UUID, int, error)
+	GenerateToken(id uuid.UUID) (string, error)
+	ValidateToken(token string) (uuid.UUID, error)
 }
 
 type JWT struct {
@@ -39,15 +39,13 @@ func NewJwt() IJWT {
 }
 
 type Claims struct {
-	Id   uuid.UUID
-	Role int
+	Id uuid.UUID
 	jwt.RegisteredClaims
 }
 
-func (j *JWT) GenerateToken(id uuid.UUID, roleId int) (string, error) {
+func (j *JWT) GenerateToken(id uuid.UUID) (string, error) {
 	claim := Claims{
-		Id:   id,
-		Role: roleId,
+		Id: id,
 		RegisteredClaims: jwt.RegisteredClaims{
 			ExpiresAt: jwt.NewNumericDate(j.expiresAt),
 		},
@@ -61,7 +59,7 @@ func (j *JWT) GenerateToken(id uuid.UUID, roleId int) (string, error) {
 	return tokenString, nil
 }
 
-func (j *JWT) ValidateToken(tokenString string) (uuid.UUID, int, error) {
+func (j *JWT) ValidateToken(tokenString string) (uuid.UUID, error) {
 	var claim Claims
 
 	token, err := jwt.ParseWithClaims(tokenString, &claim, func(t *jwt.Token) (interface{}, error) {
@@ -70,14 +68,14 @@ func (j *JWT) ValidateToken(tokenString string) (uuid.UUID, int, error) {
 
 	if err != nil {
 		if errors.Is(err, jwt.ErrTokenExpired) {
-			return uuid.Nil, 0, &response.ExpiredToken
+			return uuid.Nil, &response.ExpiredToken
 		}
-		return uuid.Nil, 0, err
+		return uuid.Nil, err
 	}
 
 	if !token.Valid {
-		return uuid.Nil, 0, &response.InvalidToken
+		return uuid.Nil, &response.InvalidToken
 	}
 
-	return claim.Id, claim.Role, nil
+	return claim.Id, nil
 }

@@ -13,7 +13,7 @@ func (m *Middleware) Authentication(ctx *fiber.Ctx) error {
 		return &response.InvalidToken
 	}
 
-	id, _, err := m.jwt.ValidateToken(authToken)
+	id, err := m.jwt.ValidateToken(authToken)
 	if err != nil {
 		return &response.InvalidToken
 	}

@@ -6,6 +6,6 @@ type HttpSuccess struct {
 }
 
 type HttpError struct {
-	Message string `json:"messgae" example:"Error type"`
+	Message string `json:"message" example:"Error type"`
 	Error   string `json:"error" example:"Error message"`
 }
