@@ -41,4 +41,5 @@ func (r *Route) mountRSVP(routerGroup fiber.Router) {
 	rsvp := routerGroup.Group("/rsvp")
 
 	rsvp.Post("/", r.handler.CreateRSVP)
+	rsvp.Get("/", r.handler.GetRSVPs)
 }

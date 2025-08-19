@@ -10,6 +10,7 @@ import (
 
 type IRSVPService interface {
 	CreateRSVP(create dto.CreateRSVP) error
+	GetRSVPs(page, pageSize int) (*dto.GetRSVPsResponse, error)
 }
 
 type RSVPService struct {
@@ -42,4 +43,34 @@ func (s *RSVPService) CreateRSVP(create dto.CreateRSVP) error {
 	}
 
 	return nil
+}
+
+func (s *RSVPService) GetRSVPs(page, pageSize int) (*dto.GetRSVPsResponse, error) {
+	rsvps, total, err := s.RSVPRepository.GetRSVPs(page, pageSize)
+	if err != nil {
+		return nil, err
+	}
+
+	rsvpResponses := make([]dto.RSVPResponse, len(rsvps))
+	for i, rsvp := range rsvps {
+		rsvpResponses[i] = dto.RSVPResponse{
+			Id:       rsvp.Id,
+			Name:     rsvp.Name,
+			StatusId: rsvp.StatusId,
+		}
+	}
+
+	totalPages := int((total + int64(pageSize) - 1) / int64(pageSize))
+
+	response := &dto.GetRSVPsResponse{
+		Data: rsvpResponses,
+		Pagination: dto.PaginationMeta{
+			Page:       page,
+			PageSize:   pageSize,
+			Total:      total,
+			TotalPages: totalPages,
+		},
+	}
+
+	return response, nil
 }
