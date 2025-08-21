@@ -2,7 +2,7 @@
 -- +goose StatementBegin
 CREATE TABLE IF NOT EXISTS comments (
     id uuid PRIMARY KEY,
-    user_id INT NOT NULL,
+    user_id uuid NOT NULL,
     name VARCHAR(255) NOT NULL,
     content TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
