@@ -6,13 +6,15 @@ import (
 )
 
 type Service struct {
-	AuthService IAuthService
-	RSVPService IRSVPService
+	AuthService    IAuthService
+	RSVPService    IRSVPService
+	CommentService ICommentService
 }
 
 func NewService(repository *repository.Repository, jwt jwt.IJWT) *Service {
 	return &Service{
-		AuthService: NewAuthService(repository.UserRepository, jwt),
-		RSVPService: NewRSVPService(repository.RSVPRepository, repository.UserRepository),
+		AuthService:    NewAuthService(repository.UserRepository, jwt),
+		RSVPService:    NewRSVPService(repository.RSVPRepository, repository.UserRepository),
+		CommentService: NewCommentService(repository.CommentRepository, repository.UserRepository),
 	}
 }
