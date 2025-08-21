@@ -1,5 +1,7 @@
 package dto
 
+import "github.com/google/uuid"
+
 type CommentDto struct {
 	Name      string `json:"name"`
 	Content   string `json:"content"`
@@ -7,7 +9,7 @@ type CommentDto struct {
 }
 
 type CreateComment struct {
-	UserId  int    `json:"user_id" validate:"required,uuid"`
-	Name    string `json:"name" validate:"required"`
-	Content string `json:"content" validate:"required"`
+	UserId  uuid.UUID `json:"user_id" validate:"required,uuid"`
+	Name    string    `json:"name" validate:"required"`
+	Content string    `json:"content" validate:"required"`
 }
