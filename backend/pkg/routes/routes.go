@@ -25,6 +25,7 @@ func (r *Route) RegisterRoutes(port string) error {
 	routerGroup := r.app.Group("/api/v1")
 
 	r.mountAuth(routerGroup)
+	r.mountRSVP(routerGroup)
 
 	return r.app.Listen(":" + port)
 }
@@ -34,4 +35,11 @@ func (r *Route) mountAuth(routerGroup fiber.Router) {
 
 	auth.Post("/register", r.handler.Register)
 	auth.Post("/login", r.handler.Login)
+}
+
+func (r *Route) mountRSVP(routerGroup fiber.Router) {
+	rsvp := routerGroup.Group("/rsvp")
+
+	rsvp.Post("/", r.handler.CreateRSVP)
+	rsvp.Get("/", r.handler.GetRSVPs)
 }

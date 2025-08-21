@@ -6,6 +6,7 @@ import (
 	"wedding-invitation-website/model/entity"
 	"wedding-invitation-website/pkg/response"
 
+	"github.com/google/uuid"
 	"github.com/jmoiron/sqlx"
 	"github.com/lib/pq"
 )
@@ -13,6 +14,7 @@ import (
 type IUserRepository interface {
 	CreateUser(user *entity.User) error
 	GetUser(name string) (*entity.User, error)
+	GetUserById(id uuid.UUID) (*entity.User, error)
 }
 
 type UserRepository struct {
@@ -40,6 +42,19 @@ func (r *UserRepository) GetUser(name string) (user *entity.User, err error) {
 	query := `SELECT * FROM users WHERE name = $1`
 
 	err = r.db.Get(user, query, name)
+	if errors.Is(err, sql.ErrNoRows) {
+		return nil, &response.UserNotFound
+	}
+
+	return user, err
+}
+
+// todo: rename GetUserByID to GetUserById and rename GetUser to GetUserByName
+func (r *UserRepository) GetUserById(id uuid.UUID) (user *entity.User, err error) {
+	user = &entity.User{}
+	query := `SELECT * FROM users WHERE id = $1`
+
+	err = r.db.Get(user, query, id)
 	if errors.Is(err, sql.ErrNoRows) {
 		return nil, &response.UserNotFound
 	}
