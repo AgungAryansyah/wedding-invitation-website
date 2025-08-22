@@ -60,7 +60,8 @@ var (
 
 	BadRequest = CustomErrorResponse(http.StatusBadRequest, "Bad request")
 
-	UserNotFound = CustomErrorResponse(http.StatusNotFound, "User not found")
+	UserNotFound    = CustomErrorResponse(http.StatusNotFound, "User not found")
+	CommentNotFound = CustomErrorResponse(http.StatusNotFound, "Comment not found")
 
 	InvalidToken       = CustomErrorResponse(http.StatusUnauthorized, "Token invalid")
 	ExpiredToken       = CustomErrorResponse(http.StatusUnauthorized, "Expired token")

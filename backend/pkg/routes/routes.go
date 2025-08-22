@@ -49,4 +49,5 @@ func (r *Route) mountComment(routerGroup fiber.Router) {
 	comment := routerGroup.Group("/comment")
 
 	comment.Post("/", r.handler.CreateComment)
+	comment.Get("/", r.handler.GetComments)
 }
