@@ -57,6 +57,7 @@ var (
 	Unauthorized     = CustomErrorResponse(http.StatusUnauthorized, "Unauthorized access")
 	Forbidden        = CustomErrorResponse(http.StatusForbidden, "Forbidden access")
 	DuplicateAccount = CustomErrorResponse(http.StatusConflict, "User already exists")
+	TooManyRequests  = CustomErrorResponse(http.StatusTooManyRequests, "Too many requests")
 
 	BadRequest = CustomErrorResponse(http.StatusBadRequest, "Bad request")
 
