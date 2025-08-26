@@ -5,6 +5,7 @@ import (
 	"wedding-invitation-website/pkg/response"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/google/uuid"
 )
 
 func (h *Handler) CreateComment(ctx *fiber.Ctx) error {
@@ -37,4 +38,17 @@ func (h *Handler) GetComments(ctx *fiber.Ctx) error {
 	}
 
 	return response.HttpSuccess(ctx, "Comments retrieved successfully", comments)
+}
+
+func (h *Handler) DeleteComment(ctx *fiber.Ctx) error {
+	id, err := uuid.Parse(ctx.Params("id"))
+	if err != nil {
+		return &response.BadRequest
+	}
+
+	if err := h.service.CommentService.DeleteComment(id); err != nil {
+		return err
+	}
+
+	return response.HttpSuccess(ctx, "Comment deleted successfully", nil)
 }

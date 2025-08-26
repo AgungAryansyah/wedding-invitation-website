@@ -50,4 +50,5 @@ func (r *Route) mountComment(routerGroup fiber.Router) {
 
 	comment.Post("/", r.handler.CreateComment)
 	comment.Get("/", r.handler.GetComments)
+	comment.Delete("/:id", r.handler.DeleteComment)
 }

@@ -4,12 +4,14 @@ import (
 	"wedding-invitation-website/model/entity"
 	"wedding-invitation-website/pkg/response"
 
+	"github.com/google/uuid"
 	"github.com/jmoiron/sqlx"
 )
 
 type ICommentRepository interface {
 	CreateComment(comment entity.Comment) error
 	GetComments(page, pageSize int) ([]entity.Comment, int64, error)
+	DeleteComment(id uuid.UUID) error
 }
 
 type CommentRepository struct {
@@ -52,4 +54,22 @@ func (r *CommentRepository) GetComments(page, pageSize int) ([]entity.Comment, i
 	}
 
 	return comments, total, nil
+}
+
+func (r *CommentRepository) DeleteComment(id uuid.UUID) error {
+	query := `DELETE FROM comments WHERE id = $1`
+	result, err := r.db.Exec(query, id)
+	if err != nil {
+		return err
+	}
+
+	rows, err := result.RowsAffected()
+	if err != nil {
+		return err
+	}
+	if rows == 0 {
+		return &response.CommentNotFound
+	}
+
+	return nil
 }

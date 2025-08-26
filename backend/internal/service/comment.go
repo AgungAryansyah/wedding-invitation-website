@@ -12,6 +12,7 @@ import (
 type ICommentService interface {
 	CreateComment(createComment dto.CreateComment) error
 	GetComments(page, pageSize int) (*dto.CommentResponse, error)
+	DeleteComment(id uuid.UUID) error
 }
 
 type CommentService struct {
@@ -75,4 +76,8 @@ func (s *CommentService) GetComments(page, pageSize int) (*dto.CommentResponse, 
 	}
 
 	return response, nil
+}
+
+func (s *CommentService) DeleteComment(id uuid.UUID) error {
+	return s.CommentRepository.DeleteComment(id)
 }
