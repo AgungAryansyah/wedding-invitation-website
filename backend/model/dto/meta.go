@@ -6,3 +6,8 @@ type PaginationMeta struct {
 	Total      int64 `json:"total"`
 	TotalPages int   `json:"total_pages"`
 }
+
+type DataWithPagination[T any] struct {
+	Data       []T            `json:"data"`
+	Pagination PaginationMeta `json:"pagination"`
+}

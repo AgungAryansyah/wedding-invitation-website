@@ -11,7 +11,7 @@ import (
 
 type ICommentService interface {
 	CreateComment(createComment dto.CreateComment) error
-	GetComments(page, pageSize int) (*dto.CommentResponse, error)
+	GetComments(page, pageSize int) (*dto.DataWithPagination[entity.Comment], error)
 	DeleteComment(id uuid.UUID) error
 }
 
@@ -48,34 +48,25 @@ func (s *CommentService) CreateComment(createComment dto.CreateComment) error {
 	return nil
 }
 
-func (s *CommentService) GetComments(page, pageSize int) (*dto.CommentResponse, error) {
+func (s *CommentService) GetComments(page, pageSize int) (*dto.DataWithPagination[entity.Comment], error) {
 	comments, total, err := s.CommentRepository.GetComments(page, pageSize)
 	if err != nil {
 		return nil, err
 	}
 
-	commentDtos := make([]dto.CommentDto, len(comments))
-	for i, comment := range comments {
-		commentDtos[i] = dto.CommentDto{
-			Name:      comment.Name,
-			Content:   comment.Content,
-			CreatedAt: comment.CreatedAt,
-		}
+	pagination := dto.PaginationMeta{
+		Page:       page,
+		PageSize:   pageSize,
+		Total:      total,
+		TotalPages: int((total + int64(pageSize) - 1) / int64(pageSize)),
 	}
 
-	totalPages := int((total + int64(pageSize) - 1) / int64(pageSize))
-
-	response := &dto.CommentResponse{
-		Data: commentDtos,
-		Pagination: dto.PaginationMeta{
-			Page:       page,
-			PageSize:   pageSize,
-			Total:      total,
-			TotalPages: totalPages,
-		},
+	dataWithPagination := dto.DataWithPagination[entity.Comment]{
+		Data:       comments,
+		Pagination: pagination,
 	}
 
-	return response, nil
+	return &dataWithPagination, nil
 }
 
 func (s *CommentService) DeleteComment(id uuid.UUID) error {
