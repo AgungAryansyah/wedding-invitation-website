@@ -40,6 +40,10 @@ func (r *RSVPRepository) GetRSVPs(page, pageSize int) ([]entity.RSVP, int64, err
 		return nil, 0, err
 	}
 
+	if total == 0 {
+		return nil, 0, &response.RSVPNotFound
+	}
+
 	query := `SELECT id, user_id, name, status_id FROM rsvps ORDER BY name LIMIT $1 OFFSET $2`
 	var rsvps []entity.RSVP
 	if err := r.db.Select(&rsvps, query, pageSize, offset); err != nil {
