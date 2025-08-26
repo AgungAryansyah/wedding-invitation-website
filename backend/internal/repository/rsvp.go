@@ -2,13 +2,16 @@ package repository
 
 import (
 	"wedding-invitation-website/model/entity"
+	"wedding-invitation-website/pkg/response"
 
+	"github.com/google/uuid"
 	"github.com/jmoiron/sqlx"
 )
 
 type IRSVPRepository interface {
 	CreateRSVP(rsvp entity.RSVP) error
 	GetRSVPs(page, pageSize int) ([]entity.RSVP, int64, error)
+	DeleteRSVP(id uuid.UUID) error
 }
 
 type RSVPRepository struct {
@@ -44,4 +47,22 @@ func (r *RSVPRepository) GetRSVPs(page, pageSize int) ([]entity.RSVP, int64, err
 	}
 
 	return rsvps, total, nil
+}
+
+func (r *RSVPRepository) DeleteRSVP(id uuid.UUID) error {
+	query := `DELETE FROM rsvps WHERE id = $1`
+	result, err := r.db.Exec(query, id)
+	if err != nil {
+		return err
+	}
+
+	rows, err := result.RowsAffected()
+	if err != nil {
+		return err
+	}
+	if rows == 0 {
+		return &response.RSVPNotFound
+	}
+
+	return nil
 }

@@ -43,6 +43,7 @@ func (r *Route) mountRSVP(routerGroup fiber.Router) {
 
 	rsvp.Post("/", r.handler.CreateRSVP)
 	rsvp.Get("/", r.handler.GetRSVPs)
+	rsvp.Delete("/:id", r.handler.DeleteRSVP)
 }
 
 func (r *Route) mountComment(routerGroup fiber.Router) {
@@ -50,4 +51,5 @@ func (r *Route) mountComment(routerGroup fiber.Router) {
 
 	comment.Post("/", r.handler.CreateComment)
 	comment.Get("/", r.handler.GetComments)
+	comment.Delete("/:id", r.handler.DeleteComment)
 }

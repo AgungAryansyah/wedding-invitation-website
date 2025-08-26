@@ -63,6 +63,7 @@ var (
 
 	UserNotFound    = CustomErrorResponse(http.StatusNotFound, "User not found")
 	CommentNotFound = CustomErrorResponse(http.StatusNotFound, "Comment not found")
+	RSVPNotFound    = CustomErrorResponse(http.StatusNotFound, "RSVP not found")
 
 	InvalidToken       = CustomErrorResponse(http.StatusUnauthorized, "Token invalid")
 	ExpiredToken       = CustomErrorResponse(http.StatusUnauthorized, "Expired token")
