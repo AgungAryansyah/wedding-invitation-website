@@ -11,6 +11,7 @@ import (
 type IRSVPService interface {
 	CreateRSVP(create dto.CreateRSVP) error
 	GetRSVPs(page, pageSize int) (*dto.GetRSVPsResponse, error)
+	DeleteRSVP(id uuid.UUID) error
 }
 
 type RSVPService struct {
@@ -73,4 +74,8 @@ func (s *RSVPService) GetRSVPs(page, pageSize int) (*dto.GetRSVPsResponse, error
 	}
 
 	return response, nil
+}
+
+func (s *RSVPService) DeleteRSVP(id uuid.UUID) error {
+	return s.RSVPRepository.DeleteRSVP(id)
 }
