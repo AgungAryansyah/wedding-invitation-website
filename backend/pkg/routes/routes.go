@@ -32,14 +32,14 @@ func (r *Route) RegisterRoutes(port string) error {
 }
 
 func (r *Route) mountAuth(routerGroup fiber.Router) {
-	auth := routerGroup.Group("/auth")
+	auth := routerGroup.Group("/auths")
 
 	auth.Post("/register", r.handler.Register)
 	auth.Post("/login", r.handler.Login)
 }
 
 func (r *Route) mountRSVP(routerGroup fiber.Router) {
-	rsvp := routerGroup.Group("/rsvp")
+	rsvp := routerGroup.Group("/rsvps")
 
 	rsvp.Post("/", r.handler.CreateRSVP)
 	rsvp.Get("/", r.handler.GetRSVPs)
@@ -47,7 +47,7 @@ func (r *Route) mountRSVP(routerGroup fiber.Router) {
 }
 
 func (r *Route) mountComment(routerGroup fiber.Router) {
-	comment := routerGroup.Group("/comment")
+	comment := routerGroup.Group("/comments")
 
 	comment.Post("/", r.handler.CreateComment)
 	comment.Get("/", r.handler.GetComments)
