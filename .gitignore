@@ -28,7 +28,7 @@ go.work.sum
 .vscode/*
 
 #postgres
-./backend/postgres_data
+backend/postgres_data
 
 # Logs
 logs
@@ -66,3 +66,20 @@ out/
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
