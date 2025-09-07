@@ -1,59 +1,27 @@
 'use client';
 
-import { useState } from 'react';
-import Image from 'next/image';
-import { Instrument_Sans } from 'next/font/google'
-import OpenInvitation from './components/open-invitation';
-import PhotoGallery from './components/photo-gallery';
-
-const instrument = Instrument_Sans({ subsets: ['latin'] });
+import { useState, useRef } from 'react';
+import HeroSection from './components/section-hero';
+import CoupleIntroduction from './components/section-couple-introduction';
 
 export default function Template1Page() {
   const [isOpen, setIsOpen] = useState(false);
+  const coupleIntroRef = useRef(null);
 
   const handleOpenInvitation = () => {
+    if (coupleIntroRef.current) {
+      coupleIntroRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
     setIsOpen(true);
   };
 
   return (
-    <div className="relative min-h-screen bg-black text-white">
-      {/* Background overlay */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/wedding-photos/template-1/bg-1.png" 
-          alt="Wedding background"
-          className="opacity-80"
-          fill
-          priority
-        />
-        <div className="absolute inset-0 bg-white opacity-10"></div>
-      </div>
+    <>
+      <HeroSection onOpenInvitation={handleOpenInvitation} />
       
-      {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-between min-h-screen max-w-md mx-auto">
-        <div className="flex-1 flex items-center w-full px-4">
-          <h1 className={`text-[3rem] ${instrument.className} font-bold leading-tight`}>
-            Celebrate<br/>Love Together
-          </h1>
-        </div>
-        
-        {/* Photo Gallery */}
-        <div className="w-full px-4">
-          <PhotoGallery />
-        </div>
-        
-        {/* Open Invitation Button */}
-        <div className="flex-1 flex items-center justify-center w-full px-4">
-          <OpenInvitation onOpen={handleOpenInvitation} />
-        </div>
-      </div>
-      
-      {/* Main Wedding Content - shown after opening invitation */}
       {isOpen && (
-        <div className="fixed inset-0 bg-black z-20 overflow-y-auto">
-          <p className="text-center p-8">Wedding details will appear here...</p>
-        </div>
+        <CoupleIntroduction forwardedRef={coupleIntroRef} />
       )}
-    </div>
+    </>
   );
 }
