@@ -1,6 +1,7 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
+import React from "react";
+import Image from "next/image";
 
 const PhotoGallery = () => {
   return (
@@ -15,7 +16,7 @@ const PhotoGallery = () => {
             className="object-cover grayscale rounded-lg"
           />
         </div>
-        
+
         {/* Center image - larger */}
         <div className="relative w-[40%] aspect-[161.89/287.8] z-20">
           <Image
@@ -25,7 +26,7 @@ const PhotoGallery = () => {
             className="object-cover grayscale rounded-lg"
           />
         </div>
-        
+
         {/* Right image - smaller */}
         <div className="relative w-[30%] aspect-[106.8/189.78] -ml-4 z-10">
           <Image

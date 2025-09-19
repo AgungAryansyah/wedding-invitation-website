@@ -1,10 +1,11 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Rubik } from 'next/font/google'
+import React from "react";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Rubik } from "next/font/google";
 
-const rubik = Rubik({ subsets: ['latin'] });
+const rubik = Rubik({ subsets: ["latin"] });
 
 const OpenInvitation = ({ onOpen }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -18,7 +19,9 @@ const OpenInvitation = ({ onOpen }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <span className="font-medium text-[16px] text-[ffffff] ${rubik.variable}">Open Invitation</span>
+      <span className="font-medium text-[16px] text-[ffffff] ${rubik.variable}">
+        Open Invitation
+      </span>
       <motion.span
         animate={{ y: isHovered ? [-1, 2, -1] : 0 }}
         transition={{ repeat: isHovered ? Infinity : 0, duration: 1 }}
