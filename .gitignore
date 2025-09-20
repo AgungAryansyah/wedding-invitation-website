@@ -28,7 +28,7 @@ go.work.sum
 .vscode/*
 
 #postgres
-./backend/postgres_data
+backend/postgres_data
 
 # Logs
 logs
@@ -54,3 +54,49 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+#next
+.next/
+.swc/
+out/
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# Dependencies
+node_modules/
+
+# Next.js build output
+.next/
+out/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+
+# Test coverage
+coverage/
+
+# TypeScript build info
+*.tsbuildinfo
