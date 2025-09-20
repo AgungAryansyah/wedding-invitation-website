@@ -10,7 +10,8 @@ const instrument = Instrument_Sans({ subsets: ["latin"] });
 
 const HeroSection = ({ onOpenInvitation }) => {
   return (
-    <div className="relative min-h-screen bg-black text-white">
+    <div className="bg-black">
+    <div className="relative min-h-screen max-w-md mx-auto bg-white text-white">
       {/* Background overlay */}
       <div className="absolute inset-0 z-10">
         <Image
@@ -25,7 +26,7 @@ const HeroSection = ({ onOpenInvitation }) => {
           }}
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-white opacity-10"></div>
+        <div className="absolute inset-0 bg-black opacity-30"></div>
       </div>
 
       {/* Content */}
@@ -50,6 +51,7 @@ const HeroSection = ({ onOpenInvitation }) => {
           <OpenInvitation onOpen={onOpenInvitation} />
         </div>
       </div>
+    </div>
     </div>
   );
 };

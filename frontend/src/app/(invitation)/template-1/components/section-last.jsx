@@ -8,8 +8,8 @@ const instrument = Instrument_Sans({
 
 const SectionLast = () => {
     return (
-      <div className="flex bg-[#333333] mx-auto justify-center">
-      <div className="max-w-md w-full text-center py-6 px-6 text-sm">
+      <div className="flex bg-black mx-auto justify-center">
+      <div className="max-w-md w-full bg-[#333333] text-center py-6 px-6 text-sm">
         <p className={`${instrument.className} italic`}>
           "Our wedding day is just the beginning of a long journey filled with dreams, hopes, and love. We humbly ask for your prayers and blessings, because with your good wishes by our side, we believe every step ahead will be more meaningful."
         </p>

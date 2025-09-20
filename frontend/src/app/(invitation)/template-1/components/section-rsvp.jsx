@@ -20,8 +20,8 @@ const SectionRsvp = ({ isEmbedded = false }) => {
   const [submitMessage, setSubmitMessage] = useState("");
 
   const containerClasses = isEmbedded
-    ? "bg-white text-black"
-    : "min-h-screen bg-white text-black";
+    ? "bg-black text-black"
+    : "min-h-screen bg-black text-black";
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -67,7 +67,7 @@ const SectionRsvp = ({ isEmbedded = false }) => {
     <div className={containerClasses}>
       {/* Content container */}
       <div
-        className={`${isEmbedded ? "" : "relative z-10"} max-w-md mx-auto px-4 py-16`}
+        className={`${isEmbedded ? "" : "relative z-10"} bg-white max-w-md mx-auto px-4 py-16`}
       >
         {/* Section Title */}
         <h2

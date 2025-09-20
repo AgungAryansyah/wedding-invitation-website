@@ -7,8 +7,8 @@ const instrument = Instrument_Sans({ subsets: ["latin"] });
 
 const SectionLocation = ({ isEmbedded = false }) => {
   const containerClasses = isEmbedded
-    ? "bg-white text-black"
-    : "min-h-screen bg-white text-black";
+    ? "bg-black text-black"
+    : "min-h-black bg-white text-black";
 
   const handleSeeDetail = () => {
     // Open Google Maps link for the location
@@ -21,7 +21,7 @@ const SectionLocation = ({ isEmbedded = false }) => {
     <div className={containerClasses}>
       {/* Content container */}
       <div
-        className={`${isEmbedded ? "" : "relative z-10"} max-w-md mx-auto px-6 py-10 flex flex-col justify-center`}
+        className={`${isEmbedded ? "" : "relative z-10"} max-w-md bg-white mx-auto px-6 py-10 flex flex-col justify-center`}
       >
         {/* Section Title */}
         <h2

@@ -8,12 +8,13 @@ const instrument = Instrument_Sans({ subsets: ["latin"] });
 
 const SectionSchedule = ({ isEmbedded = false }) => {
   return (
+    <div className="max-h-screen bg-black">
     <div
-      className={`${isEmbedded ? "py-8" : ""} max-h-screen bg-black text-white relative`}
+      className={`${isEmbedded ? "py-8" : ""} max-h-screen max-w-md bg-black text-white mx-auto relative`}
     >
       {/* Dark overlay with texture */}
       {isEmbedded && (
-        <div className="absolute inset-0 z-0">
+        <div className="absolute max-w-md mx-auto inset-0 z-0">
           <Image
             src="/wedding-photos/template-1/bg-schedule.png"
             alt="Wedding background"
@@ -77,6 +78,7 @@ const SectionSchedule = ({ isEmbedded = false }) => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

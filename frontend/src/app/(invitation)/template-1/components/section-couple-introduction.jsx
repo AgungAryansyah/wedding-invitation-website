@@ -22,9 +22,9 @@ const brideImages = [
 
 const CoupleIntroduction = ({ forwardedRef }) => {
   return (
-    <div ref={forwardedRef} className="relative bg-white text-black flex-col">
+    <div ref={forwardedRef} className="relative w-screen-md bg-black text-black flex-col">
       {/* Couple Introduction - Pure White Background */}
-      <div className="relative min-h-2screen/3 flex-1 max-w-md mx-auto px-4 py-12 flex flex-col justify-center">
+      <div className="relative bg-white min-h-2screen/3 flex-1 max-w-md mx-auto px-4 py-12 flex flex-col justify-center">
         {/* Bride Section - Top Left */}
         <div className="w-full flex mb-6">
           <div className="w-1/2 pr-3">

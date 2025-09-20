@@ -46,14 +46,14 @@ const SectionCountdown = ({ isEmbedded = false }) => {
   }, []);
 
   const containerClasses = isEmbedded
-    ? "bg-black text-white"
-    : "min-h-screen bg-black text-white";
+    ? "text-white bg-black"
+    : "min-h-screen text-white bg-black";
 
   return (
     <div className={containerClasses}>
       {/* Content container */}
       <div
-        className={`${isEmbedded ? "relative" : "relative z-0"} flex items-center justify-center mx-auto px-6 py-16`}
+        className={`${isEmbedded ? "relative" : "relative z-0"} flex max-w-md items-center justify-center mx-auto px-6 py-16`}
       >
         {/* Background image overlay */}
         <div className="absolute inset-0 z-0">
