@@ -6,6 +6,20 @@ import Portrait from "./portrait";
 
 const instrument = Instrument_Sans({ subsets: ["latin"] });
 
+const groomImages = [
+  "/wedding-photos/template-1/portrait-groom-1.png",
+  "/wedding-photos/template-1/portrait-groom-2.png",
+  "/wedding-photos/template-1/portrait-groom-3.png",
+  "/wedding-photos/template-1/portrait-groom-4.png",
+];
+
+const brideImages = [
+  "/wedding-photos/template-1/portrait-bride-1.png",
+  "/wedding-photos/template-1/portrait-bride-2.png",
+  "/wedding-photos/template-1/portrait-bride-3.png",
+  "/wedding-photos/template-1/portrait-bride-4.png",
+];
+
 const CoupleIntroduction = ({ forwardedRef }) => {
   return (
     <div ref={forwardedRef} className="relative bg-white text-black flex-col">
@@ -15,7 +29,7 @@ const CoupleIntroduction = ({ forwardedRef }) => {
         <div className="w-full flex mb-6">
           <div className="w-1/2 pr-3">
             <Portrait
-              imageSrc="/wedding-photos/template-1/portrait-bride.png"
+              imageSrc={brideImages}
               alt="Natalia in elegant dress"
             />
           </div>
@@ -49,7 +63,7 @@ const CoupleIntroduction = ({ forwardedRef }) => {
           </div>
           <div className="w-1/2 pl-3">
             <Portrait
-              imageSrc="/wedding-photos/template-1/portrait-groom.png"
+              imageSrc={groomImages}
               alt="Reynaldo in formal suit"
             />
           </div>
