@@ -15,8 +15,8 @@ const PhotoGallery = () => {
   const [index, setIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
- useEffect(() => {
-  const interval = setInterval(() => {
+  useEffect(() => {
+    const interval = setInterval(() => {
       setIsTransitioning(true);
       setTimeout(() => {
         setIndex((prev) => (prev + 1) % images.length);
@@ -34,7 +34,9 @@ const PhotoGallery = () => {
     <div className="w-full overflow-hidden">
       <div className="flex justify-center items-center">
         {/* Left image - smaller */}
-        <div className={`relative w-[30%] aspect-[106.8/189.78] -mr-4 z-10 transition-opacity duration-600 ${isTransitioning ? 'opacity-40' : 'opacity-100'}`}>
+        <div
+          className={`relative w-[30%] aspect-[106.8/189.78] -mr-4 z-10 transition-opacity duration-600 ${isTransitioning ? "opacity-40" : "opacity-100"}`}
+        >
           <Image
             src={left}
             alt="Bride and Groom picture"
@@ -44,7 +46,9 @@ const PhotoGallery = () => {
         </div>
 
         {/* Center image - larger */}
-        <div className={`relative w-[40%] aspect-[161.89/287.8] z-20 transition-opacity duration-600 ${isTransitioning ? 'opacity-40' : 'opacity-100'}`}>
+        <div
+          className={`relative w-[40%] aspect-[161.89/287.8] z-20 transition-opacity duration-600 ${isTransitioning ? "opacity-40" : "opacity-100"}`}
+        >
           <Image
             src={center}
             alt="Bride and Groom picture"
@@ -54,7 +58,9 @@ const PhotoGallery = () => {
         </div>
 
         {/* Right image - smaller */}
-        <div className={`relative w-[30%] aspect-[106.8/189.78] -ml-4 z-10 transition-opacity duration-600  ${isTransitioning ? 'opacity-40' : 'opacity-100'}`}>
+        <div
+          className={`relative w-[30%] aspect-[106.8/189.78] -ml-4 z-10 transition-opacity duration-600  ${isTransitioning ? "opacity-40" : "opacity-100"}`}
+        >
           <Image
             src={right}
             alt="Bride and Groom picture"

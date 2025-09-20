@@ -13,6 +13,6 @@ export default [
     rules: {
       "react/prop-types": "off",
     },
-    parser: "@babel/eslint-parser"
+    parser: "@babel/eslint-parser",
   },
 ];

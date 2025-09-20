@@ -4,9 +4,9 @@ import React from "react";
 import { useState } from "react";
 import { Instrument_Sans } from "next/font/google";
 
-const instrument = Instrument_Sans({ 
+const instrument = Instrument_Sans({
   subsets: ["latin"],
-  style: ['normal', 'italic']
+  style: ["normal", "italic"],
 });
 
 const SectionRsvp = ({ isEmbedded = false }) => {
@@ -77,12 +77,15 @@ const SectionRsvp = ({ isEmbedded = false }) => {
         </h2>
 
         {/* Subtitle */}
-          <p className={`${instrument.className} absolute left-1/2 -translate-x-1/2 text-center bg-white px-1 italic text-gray-600 text-[0.7rem] whitespace-nowrap`}>
-            Kindly respond by <strong>Aug 21, 2025</strong>. <br className="xxs:hidden" />
-            We look forward to celebrating with you!
-          </p>
+        <p
+          className={`${instrument.className} absolute left-1/2 -translate-x-1/2 text-center bg-white px-1 italic text-gray-600 text-[0.7rem] whitespace-nowrap`}
+        >
+          Kindly respond by <strong>Aug 21, 2025</strong>.{" "}
+          <br className="xxs:hidden" />
+          We look forward to celebrating with you!
+        </p>
 
-          {/* RSVP Form */}
+        {/* RSVP Form */}
         <form onSubmit={handleSubmit} className="pt-2.5">
           {/* Form Container with Border */}
           <div className="bg-white border-1 border-[#c4c4c4] rounded-lg">
