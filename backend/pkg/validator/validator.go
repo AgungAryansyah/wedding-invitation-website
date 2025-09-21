@@ -7,7 +7,7 @@ import (
 )
 
 func RegisterValidator(v *validator.Validate) {
-	v.RegisterValidation("phine", IndonesianPhone)
+	v.RegisterValidation("phone", IndonesianPhone)
 }
 
 func IndonesianPhone(fl validator.FieldLevel) bool {
