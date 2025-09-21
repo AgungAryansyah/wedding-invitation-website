@@ -33,10 +33,11 @@ func (s *RSVPService) CreateRSVP(create dto.CreateRSVP) error {
 	}
 
 	rsvp := entity.RSVP{
-		Id:       uuid.New(),
-		UserId:   create.UserId,
-		Name:     create.Name,
-		StatusId: create.StatusId,
+		Id:          uuid.New(),
+		UserId:      create.UserId,
+		Name:        create.Name,
+		PhoneNumber: create.PhoneNumber,
+		StatusId:    create.StatusId,
 	}
 
 	if err := s.RSVPRepository.CreateRSVP(rsvp); err != nil {

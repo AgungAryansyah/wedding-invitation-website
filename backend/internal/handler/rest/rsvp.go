@@ -15,6 +15,10 @@ func (h *Handler) CreateRSVP(ctx *fiber.Ctx) error {
 		return &response.BadRequest
 	}
 
+	if err := h.validator.Struct(create); err != nil {
+		return err
+	}
+
 	if err := h.service.RSVPService.CreateRSVP(create); err != nil {
 		return err
 	}
