@@ -25,7 +25,7 @@ func NewRSVPRepository(db *sqlx.DB) IRSVPRepository {
 }
 
 func (r *RSVPRepository) CreateRSVP(rsvp entity.RSVP) error {
-	query := `INSERT INTO rsvps (id, user_id, name, status_id) VALUES (:id, :user_id, :name, :status_id)`
+	query := `INSERT INTO rsvps (id, user_id, name, status_id, phone_number) VALUES (:id, :user_id, :name, :status_id, :phone_number)`
 
 	_, err := r.db.NamedExec(query, rsvp)
 	return err
@@ -44,7 +44,7 @@ func (r *RSVPRepository) GetRSVPs(page, pageSize int) ([]entity.RSVP, int64, err
 		return nil, 0, &response.RSVPNotFound
 	}
 
-	query := `SELECT id, user_id, name, status_id FROM rsvps ORDER BY name LIMIT $1 OFFSET $2`
+	query := `SELECT id, user_id, name, phone_number, status_id FROM rsvps ORDER BY name LIMIT $1 OFFSET $2`
 	var rsvps []entity.RSVP
 	if err := r.db.Select(&rsvps, query, pageSize, offset); err != nil {
 		return nil, 0, err

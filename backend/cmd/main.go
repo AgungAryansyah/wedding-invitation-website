@@ -12,6 +12,7 @@ import (
 	"wedding-invitation-website/pkg/middleware"
 	"wedding-invitation-website/pkg/postgres"
 	"wedding-invitation-website/pkg/routes"
+	pkg_val "wedding-invitation-website/pkg/validator"
 
 	"github.com/go-playground/validator/v10"
 )
@@ -31,7 +32,10 @@ func main() {
 
 	jwt := jwt.NewJwt()
 	middleware := middleware.NewMiddleware(jwt)
+
 	validator := validator.New(validator.WithRequiredStructEnabled())
+	pkg_val.RegisterValidator(validator)
+
 	repository := repository.NewRepository(db)
 	service := service.NewService(repository, jwt)
 	handler := rest.NewHandler(service, middleware, validator)
